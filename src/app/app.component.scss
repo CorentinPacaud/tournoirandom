@@ -1,0 +1,24 @@
+.title-match {
+    background-color: blue;
+    color: white;
+    width: fit-content;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.title-court {
+    background-color: rgb(135, 199, 109);
+    color: white;
+    width: fit-content;
+    padding: 5px;
+    border-radius: 5px;
+    &.repos {
+        background-color: rgb(199, 127, 109);
+    }
+}
+
+.player {
+    background-color: rgb(250, 217, 152);
+    border-radius: 5px;
+    box-shadow: 2px 1px 6px rgba(0, 0, 0, 0.37);
+}
