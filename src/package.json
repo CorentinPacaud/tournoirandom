@@ -1,0 +1,9 @@
+{
+    "name": "tournoiinterne",
+    "productName": "Tournoi Interne",
+    "version": "1.0.0",
+    "description": "Petit soft pour faire des matches salades",
+    "main": "electron.prod.js",
+    "license": "MIT",
+    "author": "Corentin PACAUD"
+}

@@ -1,9 +1,10 @@
 <div class="grid">
   <div class="col-4">
     <div class="grid fluid">
-      <div class="col-4 md-4">
+      <div class="col-6 md-4">
         <div class="p-inputgroup">
-          <input type="text" pInputText placeholder="Ajouter un joueur" [(ngModel)]="inputPlayer" (keydown.enter)="addPlayer()">
+          <input type="text" pInputText placeholder="Ajouter un joueur" [(ngModel)]="inputPlayer"
+            (keydown.enter)="addPlayer()">
           <button type="button" pButton pRipple icon="pi pi-user-plus" styleClass="p-button-warn"
             (click)="addPlayer()"></button>
         </div>
@@ -12,31 +13,48 @@
           styleClass="p-button-warn" (click)="generateMatch()"></button></div>
     </div>
 
-    <div *ngFor="let p of arrPlayers; let index=index" class="m-3 p-1 player">
-      <div class="flex justify-content-between">
-        <div>
-          <h3>{{p}}</h3>
-        </div><button pButton pRipple type="button" icon="pi pi-trash" class="p-button-rounded"
-          (click)="deletePlayer(index)"></button>
+    <div class="grid fluid m-2">
+      <div *ngFor="let p of arrPlayers; let index=index" class="mb-1 p-1 player col-11">
+        <div class="grid">
+          <div class="col-10">
+            <h3 style=" white-space: nowrap;  overflow: hidden; text-overflow: ellipsis;">{{p}}
+            </h3>
+          </div>
+          <div class="col-1">
+            <button pButton pRipple type="button" icon="pi pi-trash" class="p-button-rounded p-button-sm"
+              style="height: 1rem; width: 1rem; padding: 0.65625rem ;" (click)="deletePlayer(index)"></button>
+
+          </div>
+
+        </div>
       </div>
     </div>
   </div>
   <div class="col-8">
     <p-card *ngFor="let match of matches; let index = index" styleClass="mb-4">
       <div class="">
-        <h3 class="title-match">Match {{index+1}}</h3>
-        <div *ngFor="let court of match; let indexCourt = index ">
-          <div *ngIf="indexCourt < 7">
-            <h4 class="title-court">{{court.name}}</h4>
-            <strong>{{court.p0}} / {{court.p1}}</strong><span style="color: red;"> vs
-            </span> <strong>{{court.p2}} / {{court.p3}}</strong>
-          </div>
-          <div *ngIf="indexCourt == 7">
-            <h4 class="title-court repos">{{court.name}}</h4>
-            <div>{{court.players}}</div>
+        <div class="flex justify-content-between">
+          <h3 class="title-match">Match {{index+1}}</h3>
+          <div>
+            <button pButton pRipple type="button" icon="pi pi-trash" class="p-button-rounded mr-2" style="background-color: red;"
+              (click)="deleteMatch(index)"></button>
+            <button pButton pRipple type="button" icon="pi pi-angle-down" class="p-button-rounded "
+              (click)="minimizeMatch(index)"></button>
           </div>
         </div>
-
+        <div *ngIf="!match.minimized">
+          <div *ngFor="let court of match; let indexCourt = index ">
+            <div *ngIf="indexCourt < match.length -1">
+              <h4 class="title-court">{{court.name}}</h4>
+              <strong>{{court.p0}} / {{court.p1}}</strong><span style="color: red;"> vs
+              </span> <strong>{{court.p2}} / {{court.p3}}</strong>
+            </div>
+            <div *ngIf="indexCourt == match.length -1">
+              <h4 class="title-court repos">{{court.name}}</h4>
+              <div>{{court.players}}</div>
+            </div>
+          </div>
+        </div>
       </div>
     </p-card>
   </div>
